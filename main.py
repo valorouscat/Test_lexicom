@@ -6,12 +6,14 @@ import logging
 from app import endpoints
 from db.crud import lifespan
 
+
 # logging
 logging.getLogger().name = __name__
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)-14s - %(levelname)-8s - %(message)s')
 
 app = FastAPI(lifespan=lifespan)
 app.include_router(endpoints.router)
+
 
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):

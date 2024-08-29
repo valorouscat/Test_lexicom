@@ -7,8 +7,7 @@ class Phone(BaseModel):
     phone: str
 
     @field_validator("phone")
-    def val_phone(cls, v: str) -> str:
-        value = re.sub(r'[^0-9+]', '', v) # cleaning from non-digit characters except '+'
+    def val_phone(cls, value: str) -> str:
         if not re.match(r'^[\+|8][1-9][0-9]{7,14}$', value): # regex for checking phone number (probably not perfect)
             raise ValueError("Invalid phone number")
         if re.match(r"^8\d{10}$", value): # determining if phone number is in russian format
