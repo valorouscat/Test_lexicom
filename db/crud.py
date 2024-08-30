@@ -41,7 +41,7 @@ async def check_data(phone: Phone):
             
             else:
                 logger.warning(f"Address for {phone} not found")
-                return 'None'
+                return ''
 
         except json.JSONDecodeError:
             logger.exception("Invalid JSON data in database")
